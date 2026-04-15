@@ -11,7 +11,6 @@ resource "google_compute_instance" "vm" {
 
   network_interface {
     subnetwork = var.subnet
-    access_config {}
   }
 
   tags = var.tags
