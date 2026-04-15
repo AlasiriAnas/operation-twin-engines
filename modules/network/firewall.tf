@@ -16,7 +16,12 @@ resource "google_compute_firewall" "allow_http_frontend" {
 
   allow {
     protocol = "tcp"
-    ports    = ["80"]
+    ports    = ["80","22"]
+  }
+
+  
+  allow {
+    protocol = "icmp"
   }
 
   target_tags   = ["frontend"]
@@ -29,9 +34,14 @@ resource "google_compute_firewall" "allow_backend_api" {
 
   allow {
     protocol = "tcp"
-    ports    = ["5000"]
+    ports    = ["22", "80"]
   }
 
+   allow {
+    protocol = "icmp"
+  }
+
+
   target_tags   = ["backend"]
-  source_ranges = ["10.0.0.0/16"]
+  source_ranges = ["0.0.0.0/0"]
 }
